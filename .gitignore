@@ -1,23 +1,23 @@
-# Compiled class file
-*.class
+# Скомпилированный файл класса
+* .class
 
-# Log file
-*.log
+# Файл журнала
+* .log
 
-# BlueJ files
-*.ctxt
+# Файлы BlueJ
+* .ctxt
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Мобильные инструменты для Java (J2ME)
+.mtj.tmp /
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Файлы пакета #
+* .jar
+* .war
+* .nar
+* .ear
+* .zip
+* .tar.gz
+* .rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# журналы сбоев виртуальной машины, см. http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid *
