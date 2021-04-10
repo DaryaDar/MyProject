@@ -1,9 +1,17 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeManager.setTheme(this);
         setContentView(R.layout.activity_main);
 
         mBtn0 = findViewById(R.id.btn0);
@@ -266,4 +275,85 @@ public class MainActivity extends AppCompatActivity {
 
         mComma.setOnClickListener(commaListener);
     }
+
+    public static boolean isNumeric(String text)
+    {
+        if (text == null)
+            return false;
+        try
+        {
+            Double.parseDouble(text);
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                startSettings();
+                return true;
+            case R.id.about:
+                about();
+                return true;
+            case R.id.copy:
+                copy();
+                return true;
+            case R.id.paste:
+                paste();
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void paste() {
+        ClipboardManager clipboard = (ClipboardManager)
+                getSystemService(Context.CLIPBOARD_SERVICE);
+        if(clipboard !=null)
+        {
+            if (clipboard.hasPrimaryClip()
+            && clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN))
+            {
+                ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                String pasteData = item.getText().toString();
+                if(isNumeric(pasteData))
+                    mDisplay.setText(pasteData);
+            }
+        }
+    }
+
+    private void copy() {
+        ClipboardManager clipboard = (ClipboardManager)
+                getSystemService(Context.CLIPBOARD_SERVICE);
+        if(clipboard !=null)
+        {
+            ClipData clip = ClipData.newPlainText("",mDisplay.getText());
+            clipboard.setPrimaryClip(clip);
+        }
+
+    }
+
+    private void about() {
+        Intent activityIntent = new Intent(getApplicationContext(), about.class);
+
+        startActivity(activityIntent);
+    }
+
+    private void startSettings() {
+        Intent activity2Intent = new Intent(getApplicationContext(), Settings.class);
+
+        startActivity(activity2Intent);
+    }
+
+
 }

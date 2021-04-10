@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#9B5AA6</item>
+        <item name="colorPrimaryDark">#D486E1</item>
+
+        <item name="android:windowBackground">#EC81A5</item>
+        <item name="android:itemBackground">#AA6079</item>
+        <item name="actionBarTheme">@style/MyActionBar1</item>
+        <item name="android:buttonStyle">@style/ButtonStyle1</item>
+        <item name="imageButtonStyle">@style/ButtonStyle1</item>
+        <item name="android:textViewStyle">@style/TextView2</item>
+    </style>
+
+    <style name="MyActionBar1" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#000000</item>
+    </style>
+
+    <style name="ButtonStyle1" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textColor">#000000</item>
+        <item name="android:background">@color/selector2</item>
+    </style>
+
+    <style name="TextView1" parent="Base.Widget.AppCompat.TextView">
+        <item name="android:textColor">#000000</item>
+    </style>
+</resources>
